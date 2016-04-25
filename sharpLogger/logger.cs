@@ -20,17 +20,17 @@ namespace sharpLogger
 
     public class logger
     {
-        private List<genericHandler> handlerList = null;
+        private List<baseHandler> handlerList = null;
         private loggerLevels loggerLevel = loggerLevels.NOTSET;
 
         public int Count { get { return this.handlerList.Count; } }
 
 
-        public bool addHandler(genericHandler handler_in)
+        public bool addHandler(baseHandler handler_in)
         {
             if(this.handlerList == null)
             {
-                this.handlerList = new List<genericHandler>();
+                this.handlerList = new List<baseHandler>();
             }
             this.handlerList.Add(handler_in);
             return true;
@@ -75,15 +75,19 @@ namespace sharpLogger
         [Obsolete("Should only be used for Debugging/Testing")]
         public void clearHandlers()
         {
-            this.handlerList = new List<genericHandler>();
+            this.handlerList = new List<baseHandler>();
         }
         
+        private void callHandler(logRecord record)
+        {
+
+        }
 
         private void executeLog(string message_in, loggerLevels methodLevel)
         {
             if (this.loggerLevel <= methodLevel)
             {
-                foreach (genericHandler h in this.handlerList)
+                foreach (baseHandler h in this.handlerList)
                 {
                     h.log(message_in, methodLevel);
                 }

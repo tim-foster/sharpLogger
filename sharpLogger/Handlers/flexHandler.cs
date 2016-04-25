@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace sharpLogger.Handlers
 {
-    public class flexHandler : genericHandler
+    public class flexHandler : baseHandler
     {
         private Action<string> logAction = null;
 
@@ -19,6 +19,12 @@ namespace sharpLogger.Handlers
                 return true;
             }
             return false;
+        }
+
+        public override void emit(logRecord record)
+        {
+            string msg = this.format(record);
+
         }
         
         public flexHandler()

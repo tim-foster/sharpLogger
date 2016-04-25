@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace sharpLogger.Handlers
 {
-    public abstract class genericHandler
+    public abstract class baseHandler
     {
         protected loggerLevels loggerLevel = loggerLevels.NOTSET;
+        private formatter formatter = null;
+        private formatter _defaultFormatter = new formatter();
 
         public loggerLevels getlevel()
         {
@@ -21,5 +23,22 @@ namespace sharpLogger.Handlers
         }
 
         public abstract bool log(string message_in, loggerLevels level_in);
+
+        public abstract void emit(logRecord record);
+
+        public string format(logRecord record)
+        {
+            formatter fmt = null;
+            if(this.formatter != null)
+            {
+                fmt = this.formatter;
+            }
+            else
+            {
+                fmt = _defaultFormatter;
+            }
+
+            return fmt.format(record);
+        }
     }
 }
