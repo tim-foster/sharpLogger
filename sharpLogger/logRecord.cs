@@ -12,8 +12,8 @@ namespace sharpLogger
     {
         public Dictionary<string, object> attributes = null;
 
-        private string _args;
-        public string args
+        private object[] _args;
+        public object[] args
         {
             get
             {
@@ -124,8 +124,22 @@ namespace sharpLogger
             }
         }
 
-        private int _lineno;
-        public int lineno
+        private loggerLevels _levelEnum;
+        public loggerLevels levelEnum
+        {
+            get
+            {
+                return _levelEnum;
+            }
+            set
+            {
+                _levelEnum = value;
+                attributeSet("levelEnum", value);
+            }
+        }
+
+        private long _lineno;
+        public long lineno
         {
             get
             {
@@ -292,13 +306,14 @@ namespace sharpLogger
             }
         }
 
-        public logRecord(string _name, loggerLevels _level, string _msg, string _args, string _exc_info, [CallerMemberName] string _func = "", [CallerFilePath] string _pathname = "", [CallerLineNumber] long _lineno = 0)
+        public logRecord(string _name, loggerLevels _level, string _msg, object[] _args, string _exc_info = null, [CallerMemberName] string _func = "", [CallerFilePath] string _pathname = "", [CallerLineNumber] long _lineno = 0)
         {
             attributes = new Dictionary<string, object>();
             name = _name;
             
             levelName = _level.ToString();
             levelNo = (int)_level;
+            levelEnum = _level;
 
             created = DateTime.Now;
             msecs = created.Millisecond;
@@ -308,6 +323,12 @@ namespace sharpLogger
             process = tempProcess.Id;
 
             this._msg = _msg;
+
+            args = _args;
+
+            funcName = _func;
+            pathname = _pathname;
+            lineno = _lineno;
         }
 
         public string getMessage()

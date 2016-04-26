@@ -47,7 +47,7 @@ namespace sharpLogger
             logger b_logger;
             if (!loggerDictionary.TryGetValue(name_in, out b_logger))
             {
-                b_logger = new logger();
+                b_logger = new logger(name_in);
                 loggerDictionary.Add(name_in, b_logger);
             }
             return b_logger;

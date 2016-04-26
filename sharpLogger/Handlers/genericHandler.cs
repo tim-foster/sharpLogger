@@ -9,8 +9,8 @@ namespace sharpLogger.Handlers
     public abstract class baseHandler
     {
         protected loggerLevels loggerLevel = loggerLevels.NOTSET;
-        private formatter formatter = null;
-        private formatter _defaultFormatter = new formatter();
+        protected formatter formatter = null;
+        protected formatter _defaultFormatter = new formatter();
 
         public loggerLevels getlevel()
         {
@@ -22,6 +22,12 @@ namespace sharpLogger.Handlers
             this.loggerLevel = level_in;
         }
 
+        public void setFormatter(formatter formatter_in)
+        {
+            formatter = formatter_in;
+        }
+
+        public abstract bool log(logRecord record_in);
         public abstract bool log(string message_in, loggerLevels level_in);
 
         public abstract void emit(logRecord record);
@@ -40,5 +46,7 @@ namespace sharpLogger.Handlers
 
             return fmt.format(record);
         }
+
+        //public bool isEligible(log)
     }
 }

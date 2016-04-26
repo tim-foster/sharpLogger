@@ -10,10 +10,11 @@ namespace sharpLoggerTest
     [TestClass]
     public class logRecord_constructorTest
     {
+        string[] argsTest = new string[] { "test_args1", "test_args2" };
         [TestMethod]
         public void logRecord_constructorPopulatesCreated()
         {
-            logRecord b = new logRecord("test", loggerLevels.CRITICAL, "", "", "");
+            logRecord b = new logRecord("test", loggerLevels.CRITICAL, "", argsTest, "");
 
             Assert.IsNotNull(b.created);
         }
@@ -21,7 +22,7 @@ namespace sharpLoggerTest
         [TestMethod]
         public void logRecord_constructorPopulatesMsecs()
         {
-            logRecord b = new logRecord("test", loggerLevels.CRITICAL, "", "", "");
+            logRecord b = new logRecord("test", loggerLevels.CRITICAL, "", argsTest, "");
 
             Assert.AreEqual(b.created.Millisecond, b.msecs);
         }
@@ -29,7 +30,7 @@ namespace sharpLoggerTest
         [TestMethod]
         public void logRecord_constructorPopulatesLevelName()
         {
-            logRecord b = new logRecord("test", loggerLevels.CRITICAL,"","","");
+            logRecord b = new logRecord("test", loggerLevels.CRITICAL,"", argsTest, "");
 
             Assert.AreEqual("CRITICAL", b.levelName);
         }
@@ -37,7 +38,7 @@ namespace sharpLoggerTest
         [TestMethod]
         public void logRecord_constructorPopulatesLevelNo()
         {
-            logRecord b = new logRecord("test", loggerLevels.CRITICAL, "", "", "");
+            logRecord b = new logRecord("test", loggerLevels.CRITICAL, "", argsTest, "");
 
             Assert.AreEqual(50, b.levelNo);
         }
@@ -45,7 +46,7 @@ namespace sharpLoggerTest
         [TestMethod]
         public void logRecord_constructorPopulatesProcessName()
         {
-            logRecord b = new logRecord("test", loggerLevels.CRITICAL, "", "", "");
+            logRecord b = new logRecord("test", loggerLevels.CRITICAL, "", argsTest, "");
 
             Process tempProcess = Process.GetCurrentProcess();
 
@@ -55,7 +56,7 @@ namespace sharpLoggerTest
         [TestMethod]
         public void logRecord_constructorPopulatesProcessNo()
         {
-            logRecord b = new logRecord("test", loggerLevels.CRITICAL, "", "", "");
+            logRecord b = new logRecord("test", loggerLevels.CRITICAL, "", argsTest, "");
 
             Process tempProcess = Process.GetCurrentProcess();
 
