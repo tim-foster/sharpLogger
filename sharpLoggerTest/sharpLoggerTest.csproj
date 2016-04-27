@@ -59,6 +59,7 @@
     <Compile Include="baseHandlerTests.cs" />
     <Compile Include="logRecordTests.cs" />
     <Compile Include="formatterTests.cs" />
+    <Compile Include="functionalTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\sharpLogger\sharpLogger.csproj">
