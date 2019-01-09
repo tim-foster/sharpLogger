@@ -23,7 +23,7 @@ namespace sharpLogger
     public class logger
     {
         public string _name = null;
-        private List<baseHandler> handlerList = null;
+        private List<baseHandler> handlerList = new List<baseHandler>();
         private loggerLevels loggerLevel = loggerLevels.NOTSET;
         private string _message_template = null;
 

@@ -29,6 +29,19 @@ namespace sharpLogger.Tests
     }
 
     [TestClass]
+    public class noHandlers
+    {
+        [TestMethod]
+        public void fire_critical_with_no_handler()
+        {
+
+            var l = new logger("no_handler");
+            l.critical("");
+        }
+        
+    }
+
+    [TestClass]
     public class logger_critical
     {
         logger l;
