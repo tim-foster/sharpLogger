@@ -134,7 +134,12 @@ namespace sharpLogger
 
         public void handle(logRecord record_in)
         {
-            //TODO check for no handlers
+
+            //TODO: add unit test to check that we properly eat messages when no handler is present
+            if (this.handlerList.Count == 0)
+            {
+                return;
+            }
             foreach (baseHandler h in this.handlerList)
             {
                 h.log(record_in);
