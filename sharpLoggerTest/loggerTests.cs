@@ -42,19 +42,13 @@ namespace sharpLogger.Tests
         [TestInitialize]
         public void setup()
         {
-            //l = new logger("logger_critical");
-            //l.setLevel(loggerLevels.NOTSET);
-            l = logging.Instance.getLogger("MainLogger");
+            l = new logger("logger_critical");
+            l.setLevel(loggerLevels.CRITICAL);
 
             flexHandler h = new flexHandler();
             h.setLevel(loggerLevels.ERROR);
 
-            flexHandler n = new flexHandler();
-            n.setLevel(loggerLevels.ERROR);
-            n.setFormatter(new formatter("{created} - {message}\n"));
-
             l.addHandler(h);
-            l.addHandler(n);
 
             testMessage = "Testing Logger {0}, {1}";
 
@@ -89,8 +83,7 @@ namespace sharpLogger.Tests
 
             l.error(testMessage, argsTest);
 
-            Assert.AreEqual(testMessageResult + "\r\n", consoleOut.ToString());
-            //Assert.AreEqual(consoleOut.ToString(), "");
+            Assert.AreEqual("", consoleOut.ToString());
 
         }
 
