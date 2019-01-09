@@ -60,7 +60,7 @@ namespace sharpLoggerTest
         [TestMethod]
         public void logger_addHandler()
         {
-            flexHandler h = new flexHandler(Console.WriteLine);
+            consoleHandler h = new consoleHandler();
             h.setLevel(loggerLevels.DEBUG);
 
             b.addHandler(h);

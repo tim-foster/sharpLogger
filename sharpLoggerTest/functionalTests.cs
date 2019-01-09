@@ -19,10 +19,10 @@ namespace sharpLoggerTest
             logger l2 = new logger("testingLogger.main2");
             l2.setLevel(loggerLevels.INFO);
 
-            flexHandler h = new flexHandler(Console.WriteLine);
+            consoleHandler h = new consoleHandler();
             h.setLevel(loggerLevels.DEBUG);
 
-            flexHandler h2 = new flexHandler(Console.WriteLine);
+            consoleHandler h2 = new consoleHandler();
 
             formatter f = new formatter("{levelName}:{name}:{message}");
 

@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-
 
 namespace sharpLogger.Handlers
 {
-    public class flexHandler : baseHandler
+    public class consoleHandler : baseHandler
     {
-        delegate void logDelegate(string msg, loggerLevels lvl = loggerLevels.NOTSET);
-        private logDelegate logAction = null;
-
+        private Action<string> logAction = null;
         public override bool log(logRecord record)
         {
             if (this.getlevel() <= record.levelEnum)
@@ -38,22 +33,10 @@ namespace sharpLogger.Handlers
             string msg = this.format(record);
 
         }
-        
-        public flexHandler()
-        {
-            this.logAction = (msg,level) => Console.WriteLine(msg);
-            formatter = _defaultFormatter;
-        }
 
-        public flexHandler(Action<string> logAction_in)
+        public consoleHandler()
         {
-            this.logAction = (msg, level) => logAction_in(msg);
-            formatter = _defaultFormatter;
-        }
-
-        public flexHandler(Action<string, loggerLevels> logAction_in)
-        {
-            this.logAction = (msg, level) => logAction_in(msg, level);
+            this.logAction = Console.WriteLine;
             formatter = _defaultFormatter;
         }
     }
