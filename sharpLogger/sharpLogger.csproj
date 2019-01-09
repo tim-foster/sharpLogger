@@ -6,6 +6,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>foster_sharpLogger</PackageId>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/tim-foster/sharpLogger/blob/develop/LICENSE.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/tim-foster/sharpLogger</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/tim-foster/sharpLogger</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
