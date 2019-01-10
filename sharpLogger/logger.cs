@@ -40,9 +40,14 @@ namespace sharpLogger
             this._message_template = message_template;
         }
 
+        private logger(string name_in, string message_template, List<baseHandler> handlers) : this(name_in, message_template)
+        {
+            this.handlerList = handlers;
+        }
+
         public logger ApplyMessageTemplate(string messageTemplate)
         {
-            return new logger(this._name, messageTemplate);
+            return new logger(this._name, messageTemplate, this.handlerList);
         }
 
         public bool addHandler(baseHandler handler_in)

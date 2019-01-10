@@ -20,14 +20,17 @@ namespace sharpLoggerTest
             Console.SetOut(consoleOut);
             string jobName = "test";
             DateTime runDate = DateTime.Today;
-            logger log = logging.Instance.getLogger("messageTemplate")
-                .ApplyMessageTemplate($"{jobName}: {runDate:yyyy-MM-dd}: {{message}}");
+            logger log = logging.Instance.getLogger("messageTemplate");
+
+                
             var h = new consoleHandler();
 
             h.setFormatter(new formatter("{levelName}:{message}"));
 
 
             log.addHandler(h);
+
+            log = logging.Instance.getLogger("messageTemplate").ApplyMessageTemplate($"{jobName}: {runDate:yyyy-MM-dd}: {{message}}");
 
             log.info("test something");
 
