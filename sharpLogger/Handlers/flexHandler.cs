@@ -17,7 +17,7 @@ namespace sharpLogger.Handlers
             if (this.getlevel() <= record.levelEnum)
             {
 
-                this.logAction(this.formatter.format(record));
+                this.logAction(this.formatter.format(record), record.levelEnum);
                 return true;
             }
             return false;
@@ -27,7 +27,7 @@ namespace sharpLogger.Handlers
         {
             if (this.getlevel() <= level_in)
             {
-                this.logAction(message_in);
+                this.logAction(message_in, level_in);
                 return true;
             }
             return false;

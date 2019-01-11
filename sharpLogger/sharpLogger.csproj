@@ -9,7 +9,7 @@
     <PackageLicenseUrl>https://github.com/tim-foster/sharpLogger/blob/develop/LICENSE.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/tim-foster/sharpLogger</PackageProjectUrl>
     <RepositoryUrl>https://github.com/tim-foster/sharpLogger</RepositoryUrl>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
