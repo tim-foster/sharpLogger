@@ -82,49 +82,49 @@ namespace sharpLogger.Tests
         }
 
         [TestMethod]
-        public void logger_critical_sendCritical()
+        public async Task logger_critical_sendCritical()
         {
-            l.critical(testMessage, argsTest);
+            await l.critical(testMessage, argsTest);
 
             Assert.AreEqual(testMessageResult + "\r\n", consoleOut.ToString());
 
         }
 
         [TestMethod]
-        public void logger_critical_sendError()
+        public async Task logger_critical_sendError()
         {
 
-            l.error(testMessage, argsTest);
+            await l.error(testMessage, argsTest);
 
             Assert.AreEqual("", consoleOut.ToString());
 
         }
 
         [TestMethod]
-        public void logger_critical_sendWarning()
+        public async Task logger_critical_sendWarning()
         {
 
-            l.warning(testMessage, argsTest);
+            await l.warning(testMessage, argsTest);
 
             Assert.AreEqual(consoleOut.ToString(), "");
 
         }
 
         [TestMethod]
-        public void logger_critical_sendInfo()
+        public async Task logger_critical_sendInfo()
         {
 
-            l.info(testMessage, argsTest);
+            await l.info(testMessage, argsTest);
 
             Assert.AreEqual(consoleOut.ToString(), "");
 
         }
 
         [TestMethod]
-        public void logger_critical_SendDebug()
+        public async Task logger_critical_SendDebug()
         {
 
-            l.debug(testMessage, argsTest);
+            await l.debug(testMessage, argsTest);
 
             Assert.AreEqual(consoleOut.ToString(), "");
 
@@ -440,49 +440,49 @@ namespace sharpLogger.Tests
         }
 
         [TestMethod]
-        public void logger_debug_sendCritical()
+        public async Task logger_debug_sendCritical()
         {
-            l.critical(testMessage, argsTest);
+            await l.critical(testMessage, argsTest);
 
             Assert.AreEqual(consoleOut.ToString(), testMessageResult + "\r\n");
 
         }
 
         [TestMethod]
-        public void logger_debug_sendError()
+        public async Task logger_debug_sendError()
         {
 
-            l.error(testMessage, argsTest);
+            await l.error(testMessage, argsTest);
 
             Assert.AreEqual(consoleOut.ToString(), testMessageResult + "\r\n");
 
         }
 
         [TestMethod]
-        public void logger_debug_sendWarning()
+        public async Task logger_debug_sendWarning()
         {
 
-            l.warning(testMessage, argsTest);
+            await l.warning(testMessage, argsTest);
 
             Assert.AreEqual(consoleOut.ToString(), testMessageResult + "\r\n");
 
         }
 
         [TestMethod]
-        public void logger_debug_sendInfo()
+        public async Task logger_debug_sendInfo()
         {
 
-            l.info(testMessage, argsTest);
+            await l.info(testMessage, argsTest);
 
             Assert.AreEqual(consoleOut.ToString(), testMessageResult + "\r\n");
 
         }
 
         [TestMethod]
-        public void logger_debug_sendDebug()
+        public async Task logger_debug_sendDebug()
         {
 
-            l.debug(testMessage, argsTest);
+            await l.debug(testMessage, argsTest);
 
             Assert.AreEqual(consoleOut.ToString(), testMessageResult + "\r\n");
 

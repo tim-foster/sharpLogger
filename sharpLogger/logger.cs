@@ -75,34 +75,40 @@ namespace sharpLogger
             this.loggerLevel = level_in;
         }
 
-        public void critical(string message, object[] args = null, [CallerMemberName] string _func = "", [CallerFilePath] string _pathname = "", [CallerLineNumber] long _lineno = 0)
+        public Task critical(string message, object[] args = null, [CallerMemberName] string _func = "", [CallerFilePath] string _pathname = "", [CallerLineNumber] long _lineno = 0)
         {
             if(isEnabledFor(loggerLevels.CRITICAL))
-                executeLog(loggerLevels.CRITICAL, message, args, _func, _pathname, _lineno);
+                return executeLog(loggerLevels.CRITICAL, message, args, _func, _pathname, _lineno);
+            return Task.FromResult<object>(null);
+
         }
 
-        public void error(string message, object[] args = null, [CallerMemberName] string _func = "", [CallerFilePath] string _pathname = "", [CallerLineNumber] long _lineno = 0)
+        public Task error(string message, object[] args = null, [CallerMemberName] string _func = "", [CallerFilePath] string _pathname = "", [CallerLineNumber] long _lineno = 0)
         {
             if (isEnabledFor(loggerLevels.ERROR))
-                executeLog(loggerLevels.ERROR, message, args, _func, _pathname, _lineno);
+                return executeLog(loggerLevels.ERROR, message, args, _func, _pathname, _lineno);
+            return Task.FromResult<object>(null);
         }
 
-        public void warning(string message, object[] args = null, [CallerMemberName] string _func = "", [CallerFilePath] string _pathname = "", [CallerLineNumber] long _lineno = 0)
+        public Task warning(string message, object[] args = null, [CallerMemberName] string _func = "", [CallerFilePath] string _pathname = "", [CallerLineNumber] long _lineno = 0)
         {
             if (isEnabledFor(loggerLevels.WARNING))
-                executeLog(loggerLevels.WARNING, message, args, _func, _pathname, _lineno);
+                return executeLog(loggerLevels.WARNING, message, args, _func, _pathname, _lineno);
+            return Task.FromResult<object>(null);
         }
 
-        public void info(string message, object[] args = null, [CallerMemberName] string _func = "", [CallerFilePath] string _pathname = "", [CallerLineNumber] long _lineno = 0)
+        public Task info(string message, object[] args = null, [CallerMemberName] string _func = "", [CallerFilePath] string _pathname = "", [CallerLineNumber] long _lineno = 0)
         {
             if (isEnabledFor(loggerLevels.INFO))
-                executeLog(loggerLevels.INFO, message, args, _func, _pathname, _lineno);
+                return executeLog(loggerLevels.INFO, message, args, _func, _pathname, _lineno);
+            return Task.FromResult<object>(null);
         }
 
-        public void debug(string message, object[] args = null, [CallerMemberName] string _func = "", [CallerFilePath] string _pathname = "", [CallerLineNumber] long _lineno = 0)
+        public Task debug(string message, object[] args = null, [CallerMemberName] string _func = "", [CallerFilePath] string _pathname = "", [CallerLineNumber] long _lineno = 0)
         {
             if (isEnabledFor(loggerLevels.DEBUG))
-                executeLog(loggerLevels.DEBUG, message, args, _func, _pathname, _lineno);
+                return executeLog(loggerLevels.DEBUG, message, args, _func, _pathname, _lineno);
+            return Task.FromResult<object>(null);
         }
         
         [Obsolete("Should only be used for Debugging/Testing")]
@@ -116,7 +122,7 @@ namespace sharpLogger
 
         }
 
-        private void executeLog(loggerLevels methodLevel, string message_in, object[] args, string _func, string _pathname, long _lineno)
+        private Task executeLog(loggerLevels methodLevel, string message_in, object[] args, string _func, string _pathname, long _lineno)
         {
             if (!string.IsNullOrWhiteSpace(_message_template))
             {
@@ -134,7 +140,7 @@ namespace sharpLogger
                 message_in = string.Format(conformedMessage_template, message_in);
             }
             logRecord record = new logRecord(_name, methodLevel, message_in, args, null, _func, _pathname, _lineno);
-            handle(record);
+            return Task.Run(() => handle(record));
         }
 
         public void handle(logRecord record_in)

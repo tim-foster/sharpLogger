@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using sharpLogger;
 using sharpLogger.Handlers;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace sharpLoggerTest
 {
@@ -89,7 +90,7 @@ namespace sharpLoggerTest
         }
 
         [TestMethod]
-        public void logger_sendDebug()
+        public async Task logger_sendDebug()
         {
             string testMessage = "this is a test";
 
@@ -102,13 +103,13 @@ namespace sharpLoggerTest
 
             Console.SetOut(consoleOut);
 
-            b_logger.debug(testMessage);
+            await b_logger.debug(testMessage);
 
-            Assert.AreEqual(consoleOut.ToString(), testMessage + "\r\n");
+            Assert.AreEqual(testMessage + "\r\n", consoleOut.ToString());
         }
 
         [TestMethod]
-        public void logger_sendDebugButLevelIsCritical()
+        public async Task logger_sendDebugButLevelIsCritical()
         {
             string testMessage = "this is a test";
 
@@ -122,13 +123,13 @@ namespace sharpLoggerTest
 
             Console.SetOut(consoleOut);
 
-            b_logger.debug(testMessage);
+            await b_logger.debug(testMessage);
 
             Assert.AreEqual(consoleOut.ToString(), "");
         }
 
         [TestMethod]
-        public void logger_sendDebugToCriticalhandler()
+        public async Task logger_sendDebugToCriticalhandler()
         {
             string testMessage = "this is a test";
 
@@ -142,13 +143,13 @@ namespace sharpLoggerTest
 
             Console.SetOut(consoleOut);
 
-            b_logger.debug(testMessage);
+            await b_logger.debug(testMessage);
 
             Assert.AreEqual(consoleOut.ToString(), "");
         }
 
         [TestMethod]
-        public void logger_sendCriticalToCriticalhandler()
+        public async Task logger_sendCriticalToCriticalhandler()
         {
             string testMessage = "this is a test";
 
@@ -162,7 +163,7 @@ namespace sharpLoggerTest
 
             Console.SetOut(consoleOut);
 
-            b_logger.critical(testMessage);
+            await b_logger.critical(testMessage);
 
             Assert.AreEqual(consoleOut.ToString(), testMessage + "\r\n");
         }
